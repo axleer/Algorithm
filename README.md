@@ -1,9 +1,13 @@
-### 算法
+# Algorithm
 
-渐进式的算法训练学习记录。
+## Language
 
-#### 研究
+I will only maintain the English version. Other language may appear sometimes.
 
-1）力扣题解 [停止]
+My English is not very good, so there will be many expression may confuse you.
 
-2）竞赛题解 [进行]
+## Research
+
+### LeetCode
+
+I love using leetcode to practice coding.
