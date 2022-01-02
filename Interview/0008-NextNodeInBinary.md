@@ -8,13 +8,13 @@
 
 首先我们对最简单的二叉树进行分析.
 
-<img src="https://axlis.oss-cn-hangzhou.aliyuncs.com/note/algo/1.svg" sytle="margin: 0">
+<img src="https://axlis.oss-cn-hangzhou.aliyuncs.com/note/algo/1.svg" style="margin: 0">
 
 然后探讨一些一般情况下没有遇到的一些问题.
 
-<img src="https://axlis.oss-cn-hangzhou.aliyuncs.com/note/algo/2.svg" sytle="margin: 0">
+<img src="https://axlis.oss-cn-hangzhou.aliyuncs.com/note/algo/2.svg" style="margin: 0">
 
-<img src="https://axlis.oss-cn-hangzhou.aliyuncs.com/note/algo/3.svg" sytle="margin: 0">
+<img src="https://axlis.oss-cn-hangzhou.aliyuncs.com/note/algo/3.svg" style="margin: 0">
 
 最后根据分析写出简洁的实现.
 
