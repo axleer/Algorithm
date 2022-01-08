@@ -1,19 +1,29 @@
 #include "tree.h"
 
-BTNode* BTNode::build(istream &in) {
+BTNode* BTNode::build(istream &in, BTNode* parent) {
     int val = NULL_VAL;
+
+    // 读入数字错误: 抛出异常.
     if (!(in >> val)) {
         throw runtime_error("build fail due to bad sequence");
     }
+
     if (val == NULL_VAL) return nullptr;
+
     auto root   = new BTNode;
-    root->val   = val;
-    root->left  = build(in);
-    root->right = build(in);
+
+    // 将值和双亲正确赋值.
+    root->val    = val;
+    root->parent = parent;
+
+    // 构建左子树和右子树.
+    root->left  = build(in, root);
+    root->right = build(in, root);
+
     return root;
 }
 
-void BTNode::display(BTNode *root) {
+void BTNode::display(BTNode *root, ostream &out) {
     if (root == nullptr) return;
 
     int  space = BTNode::space(root);
@@ -28,7 +38,7 @@ void BTNode::display(BTNode *root) {
     while (space != 0) {
         // display line start space.
         if (last) {
-            BTNode::display_space(space >> 1);
+            BTNode::display_space(space >> 1, out);
             last = false;
         }
 
@@ -36,11 +46,11 @@ void BTNode::display(BTNode *root) {
 
         // print the value.
         if (front == nullptr) {
-            cout << "*";
+            out << "*";
             sequence.push(nullptr);
             sequence.push(nullptr);
         } else {
-            cout << front->val;
+            out << front->val;
             sequence.push(front->left);
             sequence.push(front->right);
         }
@@ -48,13 +58,13 @@ void BTNode::display(BTNode *root) {
         sequence.pop();
 
         if (++count == (1 << depth) - 1) {
-            BTNode::display_space(space >> 1);
+            BTNode::display_space(space >> 1, out);
             cout << endl;
             depth++;
             space >>= 1;
             last = true;
         } else {
-            BTNode::display_space(space);
+            BTNode::display_space(space, out);
         }
     }
 }
@@ -74,4 +84,22 @@ int BTNode::space(BTNode *root) {
     }
 
     return init;
+}
+
+void BTNode::print(BTNode *root, ostream &out, bool verbose) {
+    if (!root) {
+        out << "*";
+    } else if (verbose) {
+        out << '(';
+        print(root->left, out);
+        out << ',' << root->val << ',';
+        print(root->right, out);
+        out << ')';
+    } else {
+        out << '(';
+        out << (root->left ? '+' : '*');
+        out << ',' << root->val << ',';
+        out << (root->right ? '+' : '*');
+        out << ')';
+    }
 }
